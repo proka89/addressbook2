@@ -66,32 +66,7 @@
             <th width="170">Actions</th>
           </tr>
         </thead>
-        <?php
-          require 'actions.php';
-          $result = $db->query("SELECT id, first_name, last_name, email, phone FROM contacts") or die($db->error);
-
-            if ($result->num_rows > 0){
-              while($row = $result->fetch_assoc()){
-                $id = $row['id'];
-                $name = $row['first_name'] . " " . $row['last_name'];
-                $phone = $row['phone'];
-                $email = $row['email'];
-        ?>
-        <tbody>
-          <tr>
-            <td><?php echo $name ?></td>
-            <td><?php echo $phone ?></td>
-            <td><?php echo $email ?></td>
-            <td><div class="btn-group"><a href="#" class="btn btn-primary" role="button" >Edit</a><a href="#" class="btn btn-danger delete" role="button" id='<?php echo $id; ?>' value="delete">Delete</a></div></td>
-          </tr>
-        </tbody>
-        <?php
-              }
-            } else {
-              echo "Addressbook is empty";
-            }
-          $db->close();
-        ?>
+        <tbody id="users"></tbody>
       </table>
     </div>
   </div>
