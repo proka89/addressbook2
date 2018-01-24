@@ -1,0 +1,13 @@
+body {
+  font-size: 15px;
+  background: #f4f4f4;
+}
+
+.add-btn {
+  margin-top: 10px;
+}
+
+table tr th, table tr td {
+  font-size: 15px;
+  padding: 5px;
+}
