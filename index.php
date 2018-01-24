@@ -30,19 +30,19 @@
               <form action="actions.php" method="post">
                 <div class="form-group">
                   <label>First Name:</label>
-                  <input type="text" class="form-control" placeholder="Enter First Name" name="firstname">
+                  <input type="text" class="form-control" placeholder="Enter First Name" name="firstname" id="first_name">
                 </div>
                 <div class="form-group">
                   <label>Last Name:</label>
-                  <input type="text" class="form-control" placeholder="Enter Last Name" name="lastname">
+                  <input type="text" class="form-control" placeholder="Enter Last Name" name="lastname" id="last_name">
                 </div>
                 <div class="form-group">
                   <label>Email:</label>
-                  <input type="email" class="form-control" placeholder="Enter email Address" name="email">
+                  <input type="email" class="form-control" placeholder="Enter email Address" name="email" id="email">
                 </div>
                 <div class="form-group">
                   <label>Phone Number:</label>
-                  <input type="text" class="form-control" placeholder="Enter Phone Number" name="phone">
+                  <input type="text" class="form-control" placeholder="Enter Phone Number" name="phone" id="phone">
                 </div>
                 <button type="submit" class="btn btn-default submit">Submit</button>
               </form>

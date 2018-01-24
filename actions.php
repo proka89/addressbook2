@@ -22,6 +22,10 @@ switch ($_REQUEST['action']) {
         break;
     case 'users':
       getUsers();
+        break;
+    case 'adduser':
+      addUser();
+        break;
 }
 
 function getDB(){
@@ -66,4 +70,18 @@ function getUsers(){
 
     }
       echo  json_encode($results);
+}
+
+function addUser() {
+  $first_name = mysqli_real_escape_string($db, $_POST['firstname']);
+  $last_name = mysqli_real_escape_string($db, $_POST['lastname']);
+  $email = mysqli_real_escape_string($db, $_POST['email']);
+  $phone = mysqli_real_escape_string($db, $_POST['phone']);
+  $sql = "INSERT INTO contacts (first_name, last_name, email, phone)
+  VALUES ('$first_name', '$last_name', '$email', '$phone')";
+  if(mysqli_query($db, $sql)){
+      alert ("Contact added successfully");
+  } else{
+      echo "ERROR: Could not able to execute $sql. " . mysqli_error($db);
+  }
 }

@@ -1,21 +1,17 @@
 $(document).ready(function(){
 
 loadUsers();
-setActionDeleteUser();
-
-
-
+addNewUser();
 });
 
 
 function setActionDeleteUser(){
   $('.delete').click(function(){
     var ele = $(this).closest('tr');
-    console.log(ele);
     $.ajax({
        url: 'actions.php',
        type: 'POST',
-       data: { action:'delete' },
+       data: {id:ele.attr('id'), action:'delete' },
        success: function(response){
          if(response === 'success')
           ele.fadeOut().remove();
@@ -34,18 +30,36 @@ function loadUsers(){
      data: { action:'users' },
      success: function(data){
        var usersData = JSON.parse(data);
-       printUser(usersData);
+       printUsers(usersData);
+       setActionDeleteUser();
      }
   });
 }
 
-function printUser(data){
-  console.log(data);
-  var renderUsers = "";
-  for (var i = 0; i < data.length; i++) {
-    renderUsers += "<tr>" + "<td>" + data[i].name + "</td>" + "<td>" + data[i].phone + "</td>" + "<td>" + data[i].email + "</td>";
-    renderUsers += "<td>" + '<div class="btn-group" >' + '<a href="#" class="btn btn-primary" role="button">'
+function printUsers(data){
+  document.getElementById("users").innerHTML = '';
+  for (var i = 0; i < data.length; i++)
+    printUser(data[i]);
+}
+
+function printUser(user){
+  var renderUser = "";
+
+  renderUser += "<tr id=\""+user.id+"\" >" + "<td>" + user.name + "</td>" + "<td>" + user.phone + "</td>" + "<td>" + user.email + "</td>";
+  renderUser += "<td>" + '<div class="btn-group" >' + '<a href="#" class="btn btn-primary" role="button">'
     + 'Edit' + '</a>' + '<a href="#" class="btn btn-danger delete" role="button">' + 'Delete' + '</a>' + '</div>' + '</td>' + '</tr>';
-  }
-  $('#users').html(renderUsers);
+    document.getElementById("users").innerHTML += renderUser;
+}
+
+function addNewUser(){
+  $('.submit').click(function(){
+    $.ajax({
+      url:"actions.php",
+      method:"POST",
+      data:{action:'adduser'},
+      success:function(data){
+          loadUsers();
+        }
+    })
+  });
 }
