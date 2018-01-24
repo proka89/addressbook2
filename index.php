@@ -27,7 +27,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <form action="actions.php" method="post">
+              <form id="userForm" action="actions.php" method="post">
                 <div class="form-group">
                   <label>First Name:</label>
                   <input type="text" class="form-control" placeholder="Enter First Name" name="firstname" id="first_name">

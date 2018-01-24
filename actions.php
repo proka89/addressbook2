@@ -10,7 +10,7 @@ define('DB_NAME','addressbook2');
 
 
 if(!isset($_REQUEST) || !isset($_REQUEST['action'])){
-  die('NEMAM AKCIJU');
+  die('Action is not set');
 }
 
 switch ($_REQUEST['action']) {
@@ -25,7 +25,6 @@ switch ($_REQUEST['action']) {
         break;
     case 'adduser':
       addUser();
-        break;
 }
 
 function getDB(){
@@ -40,7 +39,7 @@ function getDB(){
 function delete() {
 
   if(empty($_POST['id'])){
-    die('Nije setovan ID');
+    die('ID is not set');
   }
 
   $id = $_POST['id'];
@@ -73,15 +72,16 @@ function getUsers(){
 }
 
 function addUser() {
-  $first_name = mysqli_real_escape_string($db, $_POST['firstname']);
-  $last_name = mysqli_real_escape_string($db, $_POST['lastname']);
-  $email = mysqli_real_escape_string($db, $_POST['email']);
-  $phone = mysqli_real_escape_string($db, $_POST['phone']);
+  $sb = getDB();
+  $first_name = mysqli_real_escape_string($sb, $_POST['firstname']);
+  $last_name = mysqli_real_escape_string($sb, $_POST['lastname']);
+  $email = mysqli_real_escape_string($sb, $_POST['email']);
+  $phone = mysqli_real_escape_string($sb, $_POST['phone']);
   $sql = "INSERT INTO contacts (first_name, last_name, email, phone)
   VALUES ('$first_name', '$last_name', '$email', '$phone')";
-  if(mysqli_query($db, $sql)){
-      alert ("Contact added successfully");
+  if(mysqli_query($sb, $sql)){
+      echo "Contact added successfully";
   } else{
-      echo "ERROR: Could not able to execute $sql. " . mysqli_error($db);
+      echo "ERROR: Could not able to execute $sql. " . mysqli_error($sb);
   }
 }

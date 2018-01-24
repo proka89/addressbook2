@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 loadUsers();
-addNewUser();
+setActionAddUser();
 });
 
 
@@ -51,15 +51,29 @@ function printUser(user){
     document.getElementById("users").innerHTML += renderUser;
 }
 
-function addNewUser(){
-  $('.submit').click(function(){
+function setActionAddUser(){
+  var form = document.getElementById('userForm');
+  form.onsubmit = function(){
+    event.preventDefault();
+    addNewUser(form);
+    $('#addcontact-modal').modal('toggle');
+    return false;
+  }
+}
+
+function addNewUser(form){
+  var data = {};
+  data.firstname = form.firstname.value;
+  data.lastname = form.lastname.value;
+  data.email = form.email.value;
+  data.phone = form.phone.value;
+  data.action = 'adduser';
     $.ajax({
       url:"actions.php",
       method:"POST",
-      data:{action:'adduser'},
+      data:data,
       success:function(data){
           loadUsers();
         }
     })
-  });
-}
+};
