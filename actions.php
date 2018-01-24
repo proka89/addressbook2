@@ -19,7 +19,7 @@ if (isset($_POST['action'])) {
             delete();
             break;
         case 'edit':
-            addContact();
+            edit();
             break;
     }
 }

@@ -82,7 +82,7 @@
             <td><?php echo $name ?></td>
             <td><?php echo $phone ?></td>
             <td><?php echo $email ?></td>
-            <td><div class="btn-group"><a href="edit_contact.php?id=<?php echo $row["id"]; ?>" class="btn btn-primary" role="button" >Edit</a><a href="#" class="btn btn-danger delete" role="button" id='<?php echo $id; ?>' value="delete">Delete</a></div></td>
+            <td><div class="btn-group"><a href="#" class="btn btn-primary" role="button" >Edit</a><a href="#" class="btn btn-danger delete" role="button" id='<?php echo $id; ?>' value="delete">Delete</a></div></td>
           </tr>
         </tbody>
         <?php
