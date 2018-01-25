@@ -23,6 +23,9 @@ switch ($_REQUEST['action']) {
         break;
     case 'adduser':
       addUser();
+        break;
+    case 'update':
+      updateUser();
 }
 
 function getDB(){
@@ -97,13 +100,15 @@ function editUser(){
   }
   echo json_encode($to_encode);
 
-  if(isset($_POST['new']) && $_POST['new']==1){
+}
+
+function updateUser(){
+  $sb = getDB();
     $id = $_REQUEST['id'];
     $first_name = $_REQUEST['firstname'];
     $last_name = $_REQUEST['lastname'];
     $email = $_REQUEST['email'];
     $phone = $_REQUEST['phone'];
     $update = "UPDATE contacts SET first_name = '".$first_name."', last_name = '".$last_name."', email = '".$email."', phone = '".$phone."' WHERE id = '".$id."'";
-    mysqli_query($db, $update) or die(mysqli_error());
-  }
+    mysqli_query($sb, $update) or die(mysqli_error());
 }

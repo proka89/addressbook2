@@ -89,32 +89,60 @@ function setActionEditUser(){
        success: function(data){
          var editUserData = JSON.parse(data);
          console.log(editUserData);
-         editUserForm(editUserData);
+         editUsersForm(editUserData);
          console.log(data);
+         $('.update').click(function(){
+           var editForm = document.getElementById('edit-userform');
+             editForm.onsubmit = function(){
+               event.preventDefault();
+               editexistingUser(editForm);
+               $('#editcontact-modal').modal('toggle');
+               return false;
+             }
+            function editexistingUser(editForm){
+             var editData = {};
+             editData.firstname = editForm.firstname.value;
+             editData.lastname = editForm.lastname.value;
+             editData.email = editForm.email.value;
+             editData.phone = editForm.phone.value;
+             editData.action = 'update';
+             editData.id = ele.attr('id');
+             $.ajax({
+                url: 'actions.php',
+                type: 'POST',
+                data: editData,
+                success: function(data){
+                  loadUsers();
+                }
+              })
+            }
+         })
        }
      });
   });
 }
 
-function editUserForm(user) {
+function editUsersForm(data){
   document.getElementById("edit-user").innerHTML = '';
+  for(var i=0; i < data.length; i++) {
+    editUserForm(data[i]);
+  }
+}
+
+
+function editUserForm(user) {
   var renderEditUserForm = "";
-  for(var i=0; i < user.length; i++) {
-    var nesto = user[i].first_name;
-    console.log(nesto);
-    renderEditUserForm += '<form name="form" action="" method="post">' +
-    '<input type="hidden" name="new" value="1" />' + '<input id="nb" name="id" type="hidden" value="" />' +
+    renderEditUserForm += '<form name="form" id="edit-userform" action="actions.php" method="post">' + '<input name="id" type="hidden" value="' + user.id + '" />' +
     '<div class="form-group">' + '<label>' + 'First Name:' + '</label>' +
-    '<input type="text" name="firstname" placeholder="Enter First Name" class="form-control" required value="" />' + '</div>'
+    '<input type="text" name="firstname" placeholder="Enter First Name" class="form-control" required value="' + user.first_name + '" />' + '</div>'
     + '<div class="form-group">' + '<label>' + 'Last Name:' + '</label>' +
-    '<input type="text" name="lastname" placeholder="Enter Last Name" class="form-control" required value="" />' + '</div>' +
+    '<input type="text" name="lastname" placeholder="Enter Last Name" class="form-control" required value="' + user.last_name + '" />' + '</div>' +
     '<div class="form-group">' + '<label>' + 'Email:' + '</label>' +
-    '<input type="text" name="email" placeholder="Enter Email" class="form-control" required value="" />' + '</div>' +
+    '<input type="text" name="email" placeholder="Enter Email" class="form-control" required value="' + user.email + '" />' + '</div>' +
     '<div class="form-group">' + '<label>' + 'Phone:' + '</label>' +
-    '<input type="text" name="phone" placeholder="Enter Phone Number" class="form-control" required value="" />' + '</div>' +
-    '<button type="submit" class="btn btn-default" name="submit" value="Update">Update</button>'
+    '<input type="text" name="phone" placeholder="Enter Phone Number" class="form-control" required value="' + user.phone + '" />' + '</div>' +
+    '<button type="submit" class="btn btn-default update" name="submit" value="Update">Update</button>'
     + '</form>';
     renderEditUserForm += '</div>' + '</div>' + '</div>';
-  }
-  document.getElementById("edit-user").innerHTML += renderEditUserForm;
+    document.getElementById("edit-user").innerHTML += renderEditUserForm;
 }
