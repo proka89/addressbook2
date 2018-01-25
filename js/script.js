@@ -99,19 +99,22 @@ function setActionEditUser(){
 function editUserForm(user) {
   document.getElementById("edit-user").innerHTML = '';
   var renderEditUserForm = "";
-  renderEditUserForm += '<form name="form" action="" method="post">' +
-  '<input type="hidden" name="new" value="1" />' + '<input name="id" type="hidden" value="" />' +
-  '<div class="form-group">' + '<label>' + 'First Name:' + '</label>' +
-  '<input type="text" name="firstname" placeholder="Enter First Name" class="form-control" required value="" />' + '</div>'
-  + '<div class="form-group">' + '<label>' + 'Last Name:' + '</label>' +
-  '<input type="text" name="lastname" placeholder="Enter Last Name" class="form-control" required value="" />' + '</div>' +
-  '<div class="form-group">' + '<label>' + 'Email:' + '</label>' +
-  '<input type="text" name="email" placeholder="Enter Email" class="form-control" required value="" />' + '</div>' +
-  '<div class="form-group">' + '<label>' + 'Phone:' + '</label>' +
-  '<input type="text" name="phone" placeholder="Enter Phone Number" class="form-control" required value="" />' + '</div>' +
-  '<button type="submit" class="btn btn-default" name="submit" value="Update">Update</button>'
-  + '</form>';
-  renderEditUserForm += '</div>' + '</div>' + '</div>';
+  for(var i=0; i < user.length; i++) {
+    var nesto = user[i].first_name;
+    console.log(nesto);
+    renderEditUserForm += '<form name="form" action="" method="post">' +
+    '<input type="hidden" name="new" value="1" />' + '<input id="nb" name="id" type="hidden" value="" />' +
+    '<div class="form-group">' + '<label>' + 'First Name:' + '</label>' +
+    '<input type="text" name="firstname" placeholder="Enter First Name" class="form-control" required value="" />' + '</div>'
+    + '<div class="form-group">' + '<label>' + 'Last Name:' + '</label>' +
+    '<input type="text" name="lastname" placeholder="Enter Last Name" class="form-control" required value="" />' + '</div>' +
+    '<div class="form-group">' + '<label>' + 'Email:' + '</label>' +
+    '<input type="text" name="email" placeholder="Enter Email" class="form-control" required value="" />' + '</div>' +
+    '<div class="form-group">' + '<label>' + 'Phone:' + '</label>' +
+    '<input type="text" name="phone" placeholder="Enter Phone Number" class="form-control" required value="" />' + '</div>' +
+    '<button type="submit" class="btn btn-default" name="submit" value="Update">Update</button>'
+    + '</form>';
+    renderEditUserForm += '</div>' + '</div>' + '</div>';
+  }
   document.getElementById("edit-user").innerHTML += renderEditUserForm;
-
 }

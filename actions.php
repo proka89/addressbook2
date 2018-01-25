@@ -97,7 +97,6 @@ function editUser(){
   }
   echo json_encode($to_encode);
 
-  $status = "";
   if(isset($_POST['new']) && $_POST['new']==1){
     $id = $_REQUEST['id'];
     $first_name = $_REQUEST['firstname'];
@@ -107,9 +106,4 @@ function editUser(){
     $update = "UPDATE contacts SET first_name = '".$first_name."', last_name = '".$last_name."', email = '".$email."', phone = '".$phone."' WHERE id = '".$id."'";
     mysqli_query($db, $update) or die(mysqli_error());
   }
-  //   $status = "Contact Updated Successfully.";
-  //   echo '<p style="color:#FF0000;">'.$status.'</p>';
-  // } else {
-  //   echo 'Contacts are not updated';
-  //   }
 }
