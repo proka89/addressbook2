@@ -16,7 +16,7 @@
       <h1>Addressbook</h1>
     </div>
     <div class="col-sm-6">
-      <a href="#" class="add-btn btn btn-primary btn-md " role="button" data-toggle="modal" data-target="#addcontact-modal">Add Contact</a>
+      <a href="#" class="add-btn btn btn-primary btn-md" role="button" data-toggle="modal" data-target="#addcontact-modal" id="addcontact">Add Contact</a>
       <div class="modal fade" id="addcontact-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -68,6 +68,24 @@
         </thead>
         <tbody id="users"></tbody>
       </table>
+      <div class="modal fade" id="editcontact-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel2">Add Contact</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="edit-user">
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
